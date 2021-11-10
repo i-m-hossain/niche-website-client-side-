@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import useFirebase from "../../../hooks/useFirebase";
 const Register = () => {
-    const { registerWithEmail} =useFirebase()
+    const { registerWithEmail, authError} =useFirebase()
     const { register,formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
@@ -28,7 +28,7 @@ const Register = () => {
                 </Typography>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
-                        id="standard-basic"
+                        id="standard-basic-1"
                         label="Your name"
                         variant="standard"
                         {...register("name", { required: true, maxLength: 20 })}
@@ -40,7 +40,7 @@ const Register = () => {
                         </p>
                     }
                     <TextField
-                        id="standard-basic"
+                        id="standard-basic-2"
                         label="Email"
                         type="email"
                         variant="standard"
@@ -53,7 +53,7 @@ const Register = () => {
                         </p>
                     }
                     <TextField
-                        id="standard-basic"
+                        id="standard-basic-3"
                         label="password"
                         type="password"
                         variant="standard"
@@ -66,7 +66,7 @@ const Register = () => {
                         </p>
                     }
                     <TextField
-                        id="standard-basic"
+                        id="standard-basic-4"
                         label="Retype password"
                         type="password"
                         variant="standard"
@@ -74,6 +74,9 @@ const Register = () => {
                         sx={{ width: '50%' }}
                     />
                     <br />
+                    {
+                        authError && <h4 style={{color: 'red'}}>{authError.split(':')[1]}</h4>
+                    }
                     <Button type="submit" variant="contained" sx={{ mt: 4, width: "50%" }}>Register</Button>
                 </form>
                 <h4>Already registered? Please <Link to="/login">Login</Link></h4>

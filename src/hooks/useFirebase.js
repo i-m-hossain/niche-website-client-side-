@@ -7,20 +7,19 @@ const auth = getAuth();
 const useFirebase = () => {
     const [user, setUser] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+    const [authError, setAuthError] = useState('')
 
     // registering user with email and password
     const registerWithEmail = (email, password, name) => {
         setIsLoading(true)
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then((result) => {
                 updateUserProfile(name)
-                const user = userCredential.user;
                 console.log('from register: user is registered');
                 setIsLoading(false)
-
             })
             .catch((error) => {
-
+                setAuthError(error.message)
             });
     }
     // updating user profile when user successfully register
@@ -31,6 +30,7 @@ const useFirebase = () => {
             console.log('from update profile: userprofile updated');
         }).catch((error) => {
             console.log('from update profile:',  error.message)
+            setAuthError(error.message)
         });
     }
 
@@ -38,14 +38,13 @@ const useFirebase = () => {
     const signInWithEmail = (email, password ) => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log('from signin: user is logged in');
+            .then((result) => {
+                console.log('from sign in: user is logged in');
                 setIsLoading(false)
 
             })
             .catch((error) => {
-                const errorMessage = error.message;
+                setAuthError(error.message)
             });
     }
     // observe user
@@ -67,13 +66,14 @@ const useFirebase = () => {
         signOut(auth).then(() => {
             console.log('from logout: user is logged out');
         }).catch((error) => {
-            // An error happened.
+            setAuthError(error.message)
         });
     }
 
     return {
         isLoading,
         user,
+        authError,
         registerWithEmail,
         signInWithEmail,
         logout

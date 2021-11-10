@@ -23,7 +23,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <TextField
-                        id="standard-basic"
+                        id="standard-basic-1"
                         label="Email"
                         type="email"
                         variant="standard"
@@ -37,7 +37,7 @@ const Login = () => {
                     }
                     
                     <TextField
-                        id="standard-basic"
+                        id="standard-basic-2"
                         label="password"
                         type="password"
                         variant="standard"
