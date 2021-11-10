@@ -8,6 +8,8 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import AuthProvider from './Context/AuthProvider';
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 function App() {
   return (
     <div className="App">
@@ -23,6 +25,9 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
           </Switch>
         </Router>
       </AuthProvider>

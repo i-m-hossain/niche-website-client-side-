@@ -6,12 +6,15 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
-import useFirebase from '../../../hooks/useFirebase'
+import useAuth from "../../../hooks/useAuth";
+import { useHistory, useLocation } from "react-router";
 const Login = () => {
-    const { signInWithEmail, authError } = useFirebase()
+    const { signInWithEmail, authError } = useAuth()
+    const history = useHistory()
+    const location = useLocation()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
-        signInWithEmail(data.email, data.password)
+        signInWithEmail(data.email, data.password,history,location)
     };
 
     return (

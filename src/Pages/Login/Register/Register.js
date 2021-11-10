@@ -6,24 +6,27 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
-import useFirebase from "../../../hooks/useFirebase";
+import { useHistory, useLocation } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 const Register = () => {
-    const { registerWithEmail, authError} =useFirebase()
-    const { register,formState: { errors }, handleSubmit } = useForm();
+    const { registerWithEmail, authError } = useAuth()
+    const history = useHistory()
+    const location = useLocation()
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
-        if(data.password !== data.password_2){
+        if (data.password !== data.password_2) {
             alert('password is not matched')
             return;
         }
-        registerWithEmail(data.email, data.password, data.name)
+        registerWithEmail(data.email, data.password, data.name, history, location)
 
     };
 
     return (
         <Box>
             <Container>
-                <Typography variant="h4" sx={{my:2}}>
+                <Typography variant="h4" sx={{ my: 2 }}>
                     Register
                 </Typography>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +78,7 @@ const Register = () => {
                     />
                     <br />
                     {
-                        authError && <h4 style={{color: 'red'}}>{authError.split(':')[1]}</h4>
+                        authError && <h4 style={{ color: 'red' }}>{authError.split(':')[1]}</h4>
                     }
                     <Button type="submit" variant="contained" sx={{ mt: 4, width: "50%" }}>Register</Button>
                 </form>
