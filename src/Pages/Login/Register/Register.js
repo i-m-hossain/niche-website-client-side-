@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import useFirebase from "../../../hooks/useFirebase";
 const Register = () => {
     const { registerWithEmail} =useFirebase()
-    const { register, handleSubmit } = useForm();
+    const { register,formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
         if(data.password !== data.password_2){
@@ -34,7 +34,11 @@ const Register = () => {
                         {...register("name", { required: true, maxLength: 20 })}
                         sx={{ width: '50%' }}
                     />
-                    <br />
+                    {
+                        errors && <p style={{ color: "red" }}>
+                            {errors.name?.type === 'required' && "**Name is required"}
+                        </p>
+                    }
                     <TextField
                         id="standard-basic"
                         label="Email"
@@ -43,7 +47,11 @@ const Register = () => {
                         {...register("email", { required: true, maxLength: 20 })}
                         sx={{ my: 1, width: '50%' }}
                     />
-                    <br />
+                    {
+                        errors && <p style={{ color: "red" }}>
+                            {errors.email?.type === 'required' && "**Email is required"}
+                        </p>
+                    }
                     <TextField
                         id="standard-basic"
                         label="password"
@@ -52,7 +60,11 @@ const Register = () => {
                         {...register("password", { required: true, maxLength: 20 })}
                         sx={{ width: '50%' }}
                     />
-                    <br />
+                    {
+                        errors && <p style={{ color: "red" }}>
+                            {errors.password?.type === 'required' && "**password is required"}
+                        </p>
+                    }
                     <TextField
                         id="standard-basic"
                         label="Retype password"

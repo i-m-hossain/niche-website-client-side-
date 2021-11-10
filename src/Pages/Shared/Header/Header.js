@@ -18,6 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { FiLogIn} from 'react-icons/fi'
 import { Tooltip } from '@mui/material';
 import { useHistory } from 'react-router';
+import useFirebase from '../../../hooks/useFirebase';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () =>{
+    const {user, logout} = useFirebase()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const history = useHistory()
@@ -104,8 +106,9 @@ const Header = () =>{
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
+            <MenuItem onClick={handleMenuClose}>{user.displayName}</MenuItem>
             <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
     );
 
