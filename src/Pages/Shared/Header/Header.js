@@ -18,7 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { FiLogIn} from 'react-icons/fi'
 import { Tooltip } from '@mui/material';
 import { useHistory } from 'react-router';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -61,7 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () =>{
-    const {user, logout} = useFirebase()
+    const {user, logout} = useAuth()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const history = useHistory()

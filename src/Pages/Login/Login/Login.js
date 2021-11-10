@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
 import useFirebase from '../../../hooks/useFirebase'
 const Login = () => {
-    const { signInWithEmail } = useFirebase()
+    const { signInWithEmail, authError } = useFirebase()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         signInWithEmail(data.email, data.password)
@@ -49,10 +49,11 @@ const Login = () => {
                             {errors.password?.type === 'required' && "** Password is required"}
                         </p>
                     }
-                    
-                    
                     <Button type="submit" variant="contained" sx={{ width: "50%" }}>Login</Button>
                 </form>
+                {
+                    authError && <h4 style={{ color: 'red' }}>{authError.split(':')[1]}</h4>
+                }
                 <h4>Not registered? Please <Link to="/register">Register</Link></h4>
             </Container>
 
