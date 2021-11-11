@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import { Button, MenuItem } from '@mui/material';
 import { Box } from '@mui/system';
 import Alert from '@mui/material/Alert';
 const MakeAdmin = () => {
-    const [email, setEmail] = useState('')
+    
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
+    const [role, setRole] = useState('user')
+    const [user, setUser] = useState({})
     const handleOnBlur = (e) => {
-        if (e.target.value) {
-            setEmail(e.target.value)
-        }
+        const newUser = {...user}
+        newUser.email = e.target.value
+        newUser.role = 'user'
+        setUser(newUser)
+    }
+    const handleOnChange =(e)=>{
+        const newUser ={...user}
+        newUser.role = e.target.value
+        setRole(e.target.value)
+        setUser(newUser)
     }
     const handleMakeAdmin = (e) => {
         e.preventDefault()
-        console.log(email);
-        if (!email) {
+        console.log(user);
+        if (!user.email) {
             alert('email is required')
             return;
         }
@@ -24,14 +33,14 @@ const MakeAdmin = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({email:email})
+            body: JSON.stringify(user)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if (data.modifiedCount> 0){
+                if (data.modifiedCount > 0) {
                     setSuccess(true)
-                }else{
+                } else {
                     setError(true)
                 }
             })
@@ -41,7 +50,7 @@ const MakeAdmin = () => {
         <div>
             {
                 success && <Box>
-                    <Alert severity="success">Admin is created successfully</Alert>
+                    <Alert severity="success">User role is set successfully</Alert>
                 </Box>
             }
             {
@@ -60,7 +69,24 @@ const MakeAdmin = () => {
                     onBlur={handleOnBlur}
                 />
                 <br />
-                <Button variant='contained' sx={{ width: '30%' }} type="submit"> Make Admin</Button>
+                <TextField
+                    id="standard-select-currency"
+                    select
+                    label="Select user role"
+                    name="role"
+                    value={role}
+                    onChange={handleOnChange}
+                    variant="standard"
+                    sx={{ width: '30%', my: 2 }}
+                >
+                    {['admin', 'user'].map((option, index) => (
+                        <MenuItem key={index} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <br />
+                <Button variant='contained' sx={{ width: '30%' }} type="submit"> Set User role</Button>
             </form>
         </div>
     );

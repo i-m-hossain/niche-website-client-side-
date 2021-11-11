@@ -62,7 +62,7 @@ const Dashboard = (props) => {
                     <NavLink to={`${url}/addProduct`}>Add A Product</NavLink>
                 </ListItem>
                 <ListItem>
-                    <NavLink to={`${url}/makeAdmin`}>Make Admin</NavLink>
+                    <NavLink to={`${url}/makeAdmin`}>Set user role</NavLink>
                 </ListItem>
                 <ListItem> <NavLink to={`${url}/manageProducts`}>Manage Products</NavLink></ListItem>
                 <ListItem>
