@@ -16,18 +16,21 @@ const useFirebase = () => {
         setIsLoading(true)
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
+                //save user to the database
+                const newUser = { displayName: name, email: email, role: 'user' }
+                setUser(newUser)
+                setRole('user')
+                saveUser(newUser)
                 //updating user profiles name
                 updateUserProfile(name)
-                //save user to the database
-                saveUser({ displayName: name, email: email })
-                const url = '/dashboard'
+                const url = '/'
                 history.push(url)
-                setIsLoading(false)
                 console.log('from register: user is registered');
             })
             .catch((error) => {
                 setAuthError(error.message)
-            });
+            })
+            .finally(() => { setIsLoading(false) });
     }
     const saveUser = (user) => {
         axios.post(`http://localhost:5000/users`, user)
@@ -83,15 +86,15 @@ const useFirebase = () => {
     }
     // check the authenticated user status
     useEffect(() => {
-        const url = `http://localhost:5000/users/role?email=${user.email}`
-        console.log(url);
+        console.log(user.email);
+        const url = `http://localhost:5000/users/role?email=${user?.email}`
         axios.get(url)
             .then(res => {
-                console.log(res);
+                console.log('res',res.data.role);
                 setRole(res.data.role)
             })
+
     }, [user.email])
-    console.log(user.email);
     console.log(role);
     return {
         role,

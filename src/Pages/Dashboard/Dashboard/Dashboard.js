@@ -27,6 +27,9 @@ import MyOrder from '../MyOrder/MyOrder';
 import Review from '../Review/Review';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import AddProduct from '../AddProduct/AddProduct';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import UserRoute from '../../Login/UserRoute/UserRoute';
+import ManageUserRole from '../ManageUserRole/ManageUserRole';
 
 const drawerWidth = 240;
 
@@ -70,6 +73,9 @@ const Dashboard = (props) => {
                         <ListItem>
                             <NavLink to={`${url}/makeAdmin`}>Set user role</NavLink>
                         </ListItem>
+                        <ListItem>
+                            <NavLink to={`${url}/manageUserRole`}>Manage user role</NavLink>
+                        </ListItem>
                         <ListItem> <NavLink to={`${url}/manageProducts`}>Manage Products</NavLink></ListItem>
                     </Box>
                 }
@@ -105,8 +111,12 @@ const Dashboard = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        Responsive drawer
+                        Nokshi
                     </Typography>
+                    <Box sx={{flexGrow:1}}/>
+                    <h3 >
+                        Signed in as <span style={{ color: 'blue', fontWeight:700, padding: '3px 10px', backgroundColor: 'white', borderRadius:"10px" }}>{user.displayName}</span>
+                    </h3>
                 </Toolbar>
             </AppBar>
             <Box
@@ -148,24 +158,27 @@ const Dashboard = (props) => {
                 <Toolbar />
                 <Box>
                     <Switch>
-                        <Route path={`${path}/pay`}>
+                        <UserRoute path={`${path}/pay`}>
                             <Pay></Pay>
-                        </Route>
-                        <Route path={`${path}/myOrders`}>
+                        </UserRoute>
+                        <UserRoute path={`${path}/myOrders`}>
                             <MyOrder></MyOrder>
-                        </Route>
-                        <Route path={`${path}/review`}>
+                        </UserRoute>
+                        <UserRoute path={`${path}/review`}>
                             <Review></Review>
-                        </Route>
-                        <Route path={`${path}/makeAdmin`}>
+                        </UserRoute>
+                        <AdminRoute path={`${path}/makeAdmin`}>
                             <MakeAdmin></MakeAdmin>
-                        </Route>
-                        <Route path={`${path}/manageProducts`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageUserRole`}>
+                            <ManageUserRole></ManageUserRole>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageProducts`}>
                             <ManageProducts></ManageProducts>
-                        </Route>
-                        <Route path={`${path}/addProduct`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/addProduct`}>
                             <AddProduct></AddProduct>
-                        </Route>
+                        </AdminRoute>
                     </Switch>
                 </Box>
             </Box>
