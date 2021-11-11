@@ -9,6 +9,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [authError, setAuthError] = useState('')
+    const [role, setRole] = useState('user')
 
     // registering user with email and password
     const registerWithEmail = (email, password, name, history, location) => {
@@ -18,7 +19,7 @@ const useFirebase = () => {
                 //updating user profiles name
                 updateUserProfile(name)
                 //save user to the database
-                saveUser({displayName: name, email: email})
+                saveUser({ displayName: name, email: email })
                 const url = '/dashboard'
                 history.push(url)
                 setIsLoading(false)
@@ -80,8 +81,20 @@ const useFirebase = () => {
             setAuthError(error.message)
         });
     }
-
+    // check the authenticated user status
+    useEffect(() => {
+        const url = `http://localhost:5000/users/role?email=${user.email}`
+        console.log(url);
+        axios.get(url)
+            .then(res => {
+                console.log(res);
+                setRole(res.data.role)
+            })
+    }, [user.email])
+    console.log(user.email);
+    console.log(role);
     return {
+        role,
         isLoading,
         user,
         authError,

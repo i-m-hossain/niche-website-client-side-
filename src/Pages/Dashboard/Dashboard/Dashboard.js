@@ -31,7 +31,7 @@ import AddProduct from '../AddProduct/AddProduct';
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
-    const { user, logout } = useAuth()
+    const { user, role, logout } = useAuth()
     const { window } = props;
     let { path, url } = useRouteMatch();
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -48,23 +48,31 @@ const Dashboard = (props) => {
                 <ListItem>
                     <NavLink to='/'>Home</NavLink>
                 </ListItem>
-                <ListItem>
-                    <NavLink to={`${url}/pay`}>Pay</NavLink>
-                </ListItem>
-                <ListItem>
-                    <NavLink to={`${url}/myOrders`}>My Orders</NavLink>
-                </ListItem>
-                <ListItem>
-                    <NavLink to={`${url}/review`}>Review</NavLink>
-                </ListItem>
+                {
+                    role === 'user' && <Box>
+                        <ListItem>
+                            <NavLink to={`${url}/pay`}>Pay</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to={`${url}/myOrders`}>My Orders</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to={`${url}/review`}>Review</NavLink>
+                        </ListItem>
+                    </Box>
+                }
 
-                <ListItem>
-                    <NavLink to={`${url}/addProduct`}>Add A Product</NavLink>
-                </ListItem>
-                <ListItem>
-                    <NavLink to={`${url}/makeAdmin`}>Set user role</NavLink>
-                </ListItem>
-                <ListItem> <NavLink to={`${url}/manageProducts`}>Manage Products</NavLink></ListItem>
+                {
+                    role === 'admin' && <Box>
+                        <ListItem>
+                            <NavLink to={`${url}/addProduct`}>Add A Product</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to={`${url}/makeAdmin`}>Set user role</NavLink>
+                        </ListItem>
+                        <ListItem> <NavLink to={`${url}/manageProducts`}>Manage Products</NavLink></ListItem>
+                    </Box>
+                }
                 <ListItem>
                     <Button onClick={logout}>Logout</Button>
                 </ListItem>
@@ -106,7 +114,7 @@ const Dashboard = (props) => {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
-                
+
                 <Drawer
                     container={container}
                     variant="temporary"
