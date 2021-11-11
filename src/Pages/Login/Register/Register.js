@@ -12,7 +12,7 @@ const Register = () => {
     const { registerWithEmail, authError } = useAuth()
     const history = useHistory()
     const location = useLocation()
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit  } = useForm();
     const onSubmit = data => {
         console.log(data);
         if (data.password !== data.password_2) {
@@ -20,7 +20,6 @@ const Register = () => {
             return;
         }
         registerWithEmail(data.email, data.password, data.name, history, location)
-
     };
 
     return (

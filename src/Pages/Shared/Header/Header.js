@@ -15,7 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { FiLogIn} from 'react-icons/fi'
+import { FiLogIn } from 'react-icons/fi'
 import { Tooltip } from '@mui/material';
 import { useHistory } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
@@ -60,8 +60,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const Header = () =>{
-    const {user, logout} = useAuth()
+const Header = () => {
+    const { user, logout } = useAuth()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const history = useHistory()
@@ -70,7 +70,9 @@ const Header = () =>{
     const handleLoginClick = () => {
         history.push('/login')
     }
-
+    const handleDashboard =()=>{
+        history.push('/dashboard')
+    }
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -87,7 +89,7 @@ const Header = () =>{
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-    
+
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -106,9 +108,12 @@ const Header = () =>{
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>{user.displayName}</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem>
+            {
+                user.email && <Box>
+                    <MenuItem onClick={handleDashboard}>Dashboard</MenuItem>
+                    <MenuItem onClick={logout}>Logout</MenuItem>
+                </Box>
+            }
         </Menu>
     );
 
@@ -196,44 +201,32 @@ const Header = () =>{
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                            onClick={handleLoginClick}
-                        >
-                        <Tooltip title="Add" arrow>
-                            <FiLogIn />
-                        </Tooltip>
-                           
-                            
-                            
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+
+                        {
+                            !user.email && <IconButton
+                                size="large"
+                                aria-label="show 17 new notifications"
+                                color="inherit"
+                                onClick={handleLoginClick}
+                            >
+
+                                <FiLogIn title="Login" />
+
+                            </IconButton>
+                        }
+                        {
+                            user.email && <IconButton
+                                size="large"
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-controls={menuId}
+                                aria-haspopup="true"
+                                onClick={handleProfileMenuOpen}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                        }
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
