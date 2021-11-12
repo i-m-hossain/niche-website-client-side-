@@ -8,11 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
 import { Container } from '@mui/material';
-const PlaceOrderItem = ({product}) => {
+const PlaceOrderItem = ({ product }) => {
     return (
         <Container sx={{ my: 5, }}>
             <Box>
-                <h3>Product Details</h3>
                 <TableContainer component={Paper} >
                     <Table aria-label="simple table">
                         <TableHead>
@@ -43,7 +42,7 @@ const PlaceOrderItem = ({product}) => {
                 </TableContainer>
             </Box>
         </Container>
-       
+
     );
 };
 

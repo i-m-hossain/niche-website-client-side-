@@ -20,8 +20,8 @@ const PlaceOrder = () => {
     }, [productId])
     console.log(product)
     const submitUserInfo = (info, reset) => {
-        const productOrdered = { _id: productId, qty: 1 }
-        const order = { ...info, order: productOrdered }
+        
+        const order = { ...info, product: product }
         fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
@@ -48,8 +48,8 @@ const PlaceOrder = () => {
                         <Grid container spacing={2}>
 
                             {/* product description */}
-                            <Grid item xs={12} md={12}>
-
+                            <Grid item xs={12} md={12} sx={{my:3}}>
+                                <h3 >Product Details</h3>
                                 <PlaceOrderItem product={product}></PlaceOrderItem>
                             </Grid>
                             <Grid item xs={12} md={12}>
