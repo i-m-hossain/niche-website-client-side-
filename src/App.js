@@ -11,7 +11,7 @@ import AuthProvider from './Context/AuthProvider';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Explore from './Pages/Home/Explore/Explore';
-import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
+import PlaceOrder from './Pages/PlaceOrder/PlaceOrder/PlaceOrder';
 function App() {
   return (
     <div className="App">
