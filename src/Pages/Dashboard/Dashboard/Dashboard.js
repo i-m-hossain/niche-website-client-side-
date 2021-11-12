@@ -30,6 +30,7 @@ import AddProduct from '../AddProduct/AddProduct';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import UserRoute from '../../Login/UserRoute/UserRoute';
 import ManageUserRole from '../ManageUserRole/ManageUserRole';
+import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
 
 const drawerWidth = 240;
 
@@ -68,13 +69,17 @@ const Dashboard = (props) => {
                 {
                     role === 'admin' && <Box>
                         <ListItem>
-                            <NavLink to={`${url}/addProduct`}>Add A Product</NavLink>
+                            <NavLink to={`${url}/manageAllOrders`}>Manage all orders</NavLink>
                         </ListItem>
+
                         <ListItem>
                             <NavLink to={`${url}/makeAdmin`}>Set user role</NavLink>
                         </ListItem>
                         <ListItem>
                             <NavLink to={`${url}/manageUserRole`}>Manage user role</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to={`${url}/addProduct`}>Add A Product</NavLink>
                         </ListItem>
                         <ListItem> <NavLink to={`${url}/manageProducts`}>Manage Products</NavLink></ListItem>
                     </Box>
@@ -113,9 +118,9 @@ const Dashboard = (props) => {
                     <Typography variant="h6" noWrap component="div">
                         Nokshi
                     </Typography>
-                    <Box sx={{flexGrow:1}}/>
+                    <Box sx={{ flexGrow: 1 }} />
                     <h3 >
-                        Signed in as <span style={{ color: 'blue', fontWeight:700, padding: '3px 10px', backgroundColor: 'white', borderRadius:"10px" }}>{user.displayName}</span>
+                        Signed in as <span style={{ color: 'blue', fontWeight: 700, padding: '3px 10px', backgroundColor: 'white', borderRadius: "10px" }}>{user.displayName}</span>
                     </h3>
                 </Toolbar>
             </AppBar>
@@ -169,6 +174,9 @@ const Dashboard = (props) => {
                         </UserRoute>
                         <AdminRoute path={`${path}/makeAdmin`}>
                             <MakeAdmin></MakeAdmin>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageAllOrders`}>
+                            <ManageAllOrders></ManageAllOrders>
                         </AdminRoute>
                         <AdminRoute path={`${path}/manageUserRole`}>
                             <ManageUserRole></ManageUserRole>
