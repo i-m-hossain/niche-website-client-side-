@@ -15,6 +15,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { FiLogIn } from 'react-icons/fi'
 import useAuth from '../../../hooks/useAuth';
 import { useHistory } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Header = () => {
@@ -145,7 +146,7 @@ const Header = () => {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
-                        Nokshi
+                       <Link to="/"> Nokshi</Link>
                     </Typography>
                     
                     <Box sx={{ flexGrow: 1 }} />
@@ -160,7 +161,7 @@ const Header = () => {
                             color="inherit"
                         >
                             <Typography variant="body1" sx={{}}>
-                                Explore
+                                <NavLink to="/explore">Explore</NavLink>
                             </Typography>
                         </IconButton>
 

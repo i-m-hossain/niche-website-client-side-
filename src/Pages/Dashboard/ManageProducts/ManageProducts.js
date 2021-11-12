@@ -8,20 +8,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import ProductItem from './ProductItem';
+import useProducts from '../../../hooks/useProducts';
 
 const ManageProducts = () => {
-    const [products, setProducts] = React.useState([])
-    React.useEffect(() => {
-        fetch('http://localhost:5000/services')
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data)
-            })
-    }, [])
+   const [products, setProducts] = useProducts([])
     const handleDelete = (id) => {
         const confirm = window.confirm('are you sure you want to delete the user?');
         if (confirm) {
-            axios.delete(`http://localhost:5000/services/${id}`)
+            axios.delete(`http://localhost:5000/products/${id}`)
                 .then(res => {
                     if (res.data.deletedCount > 0) {
                         const restUser = products.filter(user => user._id !== id);

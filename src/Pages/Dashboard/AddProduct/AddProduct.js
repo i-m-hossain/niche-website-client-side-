@@ -10,7 +10,7 @@ const AddProduct = () => {
     const onSubmit = data => {
         const service = { name: data.name, image: data.image, description: data.shortDescription }
         console.log(service);
-        fetch('http://localhost:5000/services', {
+        fetch('http://localhost:5000/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
