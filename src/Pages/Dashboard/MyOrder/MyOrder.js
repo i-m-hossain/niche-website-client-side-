@@ -1,6 +1,9 @@
-import { Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
+import MyOrderItem from './MyOrderItem/MyOrderItem';
+
 
 const MyOrder = () => {
     const [orders, setOrders] = useState([])
@@ -10,50 +13,57 @@ const MyOrder = () => {
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
+    const handleOnClick = (id) => {
+        const confirm = window.confirm('Are you sure want to cancel the order?')
+        if(confirm){
+            axios.delete(`http://localhost:5000/orders/${id}`)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.deletedCount>0){
+                        const restOrders = orders.filter(order => order._id !== id)
+                        setOrders(restOrders)
+                    }
+                })
+        }
+    }
 
     return (
         <div>
             <h3>My orders</h3>
-            {
-                orders.map((order,index) => {
-                    return (
+            <Container>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={12}>
+                        <TableContainer component={Paper} >
+                            <Table aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>#</TableCell>
+                                        <TableCell align="center">Product name</TableCell>
+                                        <TableCell align="center">Product Image</TableCell>
+                                        <TableCell align="center">Product Price</TableCell>
+                                        <TableCell align="center">Action</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {
+                                        orders.map((order, index) =>
+                                            <MyOrderItem
+                                                index={index}
+                                                order={order}
+                                                product={order.product}
+                                                handleOnClick={handleOnClick}
+                                            >
 
-                        <Container>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TableContainer component={Paper} >
-                                        <Table aria-label="simple table"> 
-                                            <TableBody>
-                                                <TableRow
-                                                    key=""
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {index+1}
-                                                    </TableCell>
-                                                    <TableCell component="th" scope="row">
-                                                        {order?.product?.name}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        <img src={order?.product?.image} width="60" height="60" style={{ borderRadius: '50%', objectFit: "cover" }} />
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        ${order?.product?.price}
-                                                    </TableCell>
-                                                </TableRow>
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </Grid>
-                            </Grid>
-                        </Container>
-                    )
-                }
-
-                )
-            }
+                                            </MyOrderItem>)
+                                    }
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                </Grid>
+            </Container>
         </div>
-    );
-};
+    )
+}
 
 export default MyOrder;

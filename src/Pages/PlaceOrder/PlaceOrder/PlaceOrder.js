@@ -41,12 +41,9 @@ const PlaceOrder = () => {
         <div>
             <Header></Header>
             <Grid container spacing={2}>
-
                 <Grid item xs={12} md={6}>
                     <Container>
-
                         <Grid container spacing={2}>
-
                             {/* product description */}
                             <Grid item xs={12} md={12} sx={{my:3}}>
                                 <h3 >Product Details</h3>
