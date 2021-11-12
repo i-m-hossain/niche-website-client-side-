@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 const Product = ({product}) => {
     const history = useHistory()
     const handleOnClick=(id)=>{
-        history.push(`/order/${id}`)
+        history.push(`/placeOrder/${id}`)
     }
     return (
         <Grid item xs={12} md={4} key={product._id}>

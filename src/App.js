@@ -11,6 +11,7 @@ import AuthProvider from './Context/AuthProvider';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Explore from './Pages/Home/Explore/Explore';
+import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <PrivateRoute path="/dashboard">
               <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute path="/placeOrder/:productId">
+              <PlaceOrder />
             </PrivateRoute>
           </Switch>
         </Router>
