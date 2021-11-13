@@ -1,4 +1,5 @@
-import { Container, Grid } from '@mui/material';
+import { CircularProgress, Container, Grid } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import ReviewItem from './ReviewItem';
 
@@ -10,11 +11,18 @@ const Review = () => {
     return (
         <Container>
             <h2>User reviews</h2>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, md: 12 }}>
-                {reviews.map((review, index) => (
-                    <ReviewItem review={review} index={index}></ReviewItem>
-                ))}
-            </Grid>
+            {
+                reviews.length > 0 && <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, md: 12 }}>
+                    {reviews.map((review, index) => (
+                        <ReviewItem review={review} index={index}></ReviewItem>
+                    ))}
+                </Grid>
+            }
+            {
+                reviews.length === 0 && <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <CircularProgress />
+                </Box>
+            }
         </Container>
     );
 };

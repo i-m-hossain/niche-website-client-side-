@@ -64,6 +64,9 @@ const Header = (props) => {
             <Divider />
             <List>
                 <ListItem button >
+                    <Link to='/'>Home</Link>
+                </ListItem>
+                <ListItem button >
                     <Link to='/explore'>Explore</Link>
                 </ListItem>
             </List>
