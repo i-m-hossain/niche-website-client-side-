@@ -3,7 +3,7 @@ import Product from './Product';
 import { Container } from '@mui/material';
 import useProducts from '../../../hooks/useProducts';
 const Products = () => {
-    const [products, setProducts] = useProducts([])
+    const [products] = useProducts([])
     return (
         <Container>
             <h2>Our Products</h2>

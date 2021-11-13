@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
+import { Card, CardContent, Grid, Rating, Typography } from '@mui/material';
 import React from 'react';
 
 const ReviewItem = ({ review }) => {

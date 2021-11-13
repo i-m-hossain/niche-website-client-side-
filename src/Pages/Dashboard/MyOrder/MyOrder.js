@@ -18,7 +18,7 @@ const MyOrder = () => {
         })
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, [])
+    }, [user.email, token])
     // deleteing or cancelling order
     const handleOnClick = (id) => {
         const confirm = window.confirm('Are you sure want to cancel the order?')

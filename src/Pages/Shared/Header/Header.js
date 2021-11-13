@@ -4,19 +4,16 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { FiLogIn } from 'react-icons/fi'
 import useAuth from '../../../hooks/useAuth';
 import { useHistory } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
-import { Button, Divider, Drawer, List, ListItem, ListItemIcon } from '@mui/material';
+import { Button, Divider, Drawer, List, ListItem } from '@mui/material';
 
 
 const Header = (props) => {
@@ -132,9 +129,10 @@ const Header = (props) => {
         <Box sx={{ flexGrow: 1, }}>
             <AppBar position="fixed"
                 sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    width: { sm: `calc(100% - ${drawerWidth}px)`, md: '100%' },
                     ml: { sm: `${drawerWidth}px` },
-                }} sx={{ bgcolor: '#F0F1F5' }}>
+                    bgcolor: '#F0F1F5'
+                }}>
                 <Toolbar>
                     <IconButton
                         size="small"
@@ -154,7 +152,7 @@ const Header = (props) => {
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
                         <Link to="/">
-                            <img src="https://i.ibb.co/bHMkQ8x/2.png" />
+                            <img src="https://i.ibb.co/bHMkQ8x/2.png" alt="logo" />
                         </Link>
                     </Typography>
 

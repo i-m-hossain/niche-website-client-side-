@@ -31,7 +31,7 @@ const PlaceOrderItem = ({ product }) => {
                                     {product?.name}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <img src={product?.image} width="60" height="60" style={{ borderRadius: '50%', objectFit: "cover" }} />
+                                    <img src={product?.image} width="60" height="60" style={{ borderRadius: '50%', objectFit: "cover" }} alt={product.name} />
                                 </TableCell>
                                 <TableCell align="center">
                                     ${product?.price}

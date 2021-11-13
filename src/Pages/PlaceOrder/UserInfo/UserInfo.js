@@ -3,11 +3,10 @@ import { Box } from "@mui/system";
 import React from "react";
 import { useForm } from "react-hook-form";
 import TextField from '@mui/material/TextField';
-import { useHistory } from "react-router";
 
 const UserInfo = ({ user, submitUserInfo }) => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    
+
     const onSubmit = data => {
         const info = {
             streetAddress: data.streetAddress,

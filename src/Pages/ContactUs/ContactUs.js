@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { Alert, Button, Container, Typography } from "@mui/material";
+import { Alert, Button, Container } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import TextField from '@mui/material/TextField';
-import { useHistory } from "react-router";
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import Rating from '@mui/material/Rating';
 
 const ContactUs = () => {
 

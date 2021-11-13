@@ -1,6 +1,4 @@
-import { Reviews } from '@mui/icons-material';
 import { Container, Grid } from '@mui/material';
-import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import ReviewItem from './ReviewItem';
 

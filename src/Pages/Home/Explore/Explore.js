@@ -5,7 +5,7 @@ import useProducts from '../../../hooks/useProducts';
 import Product from '../Products/Product';
 import Header from '../../Shared/Header/Header';
 const Explore = () => {
-    const [products, setProducts] = useProducts([])
+    const [products] = useProducts([])
     return (
         <>
             <Header></Header>

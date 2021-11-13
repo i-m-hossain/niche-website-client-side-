@@ -1,4 +1,4 @@
-import { Button, TableBody, TableCell, TableRow } from '@mui/material';
+import { Button, TableCell, TableRow } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import useAuth from '../../../../hooks/useAuth';
@@ -37,7 +37,7 @@ const MyOrderItem = ({ order, product, index, handleOnClick }) => {
                 {order?.name}
             </TableCell>
             <TableCell align="center">
-                <img src={product?.image} width="60" height="60" style={{ borderRadius: '50%', objectFit: "cover" }} />
+                <img src={product?.image} width="60" height="60" style={{ borderRadius: '50%', objectFit: "cover" }} alt={product.name} />
             </TableCell>
             <TableCell align="center">
                 ${product?.price}
