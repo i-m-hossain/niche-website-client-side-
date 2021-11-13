@@ -14,7 +14,7 @@ const Login = () => {
     const location = useLocation()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
-        signInWithEmail(data.email, data.password,history,location)
+        signInWithEmail(data.email, data.password, history, location)
     };
 
     return (
@@ -38,7 +38,6 @@ const Login = () => {
                             {errors.email?.type === 'required' && "**Email is required"}
                         </p>
                     }
-                    
                     <TextField
                         id="standard-basic-2"
                         label="password"

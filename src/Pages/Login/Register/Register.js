@@ -12,7 +12,7 @@ const Register = () => {
     const { registerWithEmail, authError } = useAuth()
     const history = useHistory()
     const location = useLocation()
-    const { register, formState: { errors }, handleSubmit  } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
         if (data.password !== data.password_2) {
@@ -33,7 +33,7 @@ const Register = () => {
                         id="standard-basic-1"
                         label="Your name"
                         variant="standard"
-                        {...register("name", { required: true, maxLength: 20 })}
+                        {...register("name", { required: true })}
                         sx={{ width: '50%' }}
                     />
                     {
@@ -46,7 +46,7 @@ const Register = () => {
                         label="Email"
                         type="email"
                         variant="standard"
-                        {...register("email", { required: true, maxLength: 20 })}
+                        {...register("email", { required: true })}
                         sx={{ my: 1, width: '50%' }}
                     />
                     {
