@@ -8,7 +8,7 @@ const AddProduct = () => {
     const [success, setSuccess] = useState(false)
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        const service = { name: data.name, image: data.image, description: data.shortDescription }
+        const service = { name: data.name, image: data.image, description: data.shortDescription, price: data.price }
         console.log(service);
         fetch('http://localhost:5000/products', {
             method: 'POST',
@@ -59,6 +59,19 @@ const AddProduct = () => {
                     {
                         errors && <p style={{ color: "red" }}>
                             {errors.image?.type === 'required' && "**Image is required"}
+                        </p>
+                    }
+                    <TextField
+                        id="standard-basic-2"
+                        label="Product price"
+                        type="text"
+                        variant="standard"
+                        {...register("price", { required: true })}
+                        sx={{ my: 1, width: '50%' }}
+                    />
+                    {
+                        errors && <p style={{ color: "red" }}>
+                            {errors.price?.type === 'required' && "**price is required"}
                         </p>
                     }
                     <TextareaAutosize
