@@ -10,17 +10,17 @@ const MyOrder = () => {
     const [orders, setOrders] = useState([])
     const { user } = useAuth()
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user.email}`)
+        fetch(`https://still-taiga-80375.herokuapp.com/orders?email=${user.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
     const handleOnClick = (id) => {
         const confirm = window.confirm('Are you sure want to cancel the order?')
-        if(confirm){
-            axios.delete(`http://localhost:5000/orders/${id}`)
+        if (confirm) {
+            axios.delete(`https://still-taiga-80375.herokuapp.com/orders/${id}`)
                 .then(res => {
                     console.log(res.data)
-                    if (res.data.deletedCount>0){
+                    if (res.data.deletedCount > 0) {
                         const restOrders = orders.filter(order => order._id !== id)
                         setOrders(restOrders)
                     }
@@ -31,7 +31,7 @@ const MyOrder = () => {
     return (
         <div>
             {
-                orders.length>0 ? <Box>
+                orders.length > 0 ? <Box>
                     <h3>My orders</h3>
                     <Container>
                         <Grid container spacing={2}>
@@ -42,7 +42,7 @@ const MyOrder = () => {
                                             <TableRow>
                                                 <TableCell>#</TableCell>
                                                 <TableCell align="center">Product name</TableCell>
-                                                
+
                                                 <TableCell align="center">Product Image</TableCell>
                                                 <TableCell align="center">Product Price</TableCell>
                                                 <TableCell align="center">Action</TableCell>
@@ -67,8 +67,8 @@ const MyOrder = () => {
                         </Grid>
                     </Container>
                 </Box>
-                :
-                <h3> You haven't ordered yet, please purchase some</h3>
+                    :
+                    <h3> You haven't ordered yet, please purchase some</h3>
             }
         </div>
     )

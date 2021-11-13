@@ -10,7 +10,7 @@ const AddProduct = () => {
     const onSubmit = data => {
         const service = { name: data.name, image: data.image, description: data.shortDescription, price: data.price }
         console.log(service);
-        fetch('http://localhost:5000/products', {
+        fetch('https://still-taiga-80375.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

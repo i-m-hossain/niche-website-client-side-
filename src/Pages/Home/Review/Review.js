@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 import ReviewItem from './ReviewItem';
 
 const Review = () => {
-    const[reviews, setReviews] = useState([])
-    fetch('http://localhost:5000/reviews')
-    .then(res=> res.json())
-    .then(data=>setReviews(data))
+    const [reviews, setReviews] = useState([])
+    fetch('https://still-taiga-80375.herokuapp.com/reviews')
+        .then(res => res.json())
+        .then(data => setReviews(data))
     return (
         <Container>
             <h2>User reviews</h2>

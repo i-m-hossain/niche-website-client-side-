@@ -13,7 +13,7 @@ const Review = () => {
     const [success, setSuccess] = React.useState(false)
     const [star, setStar] = React.useState(3);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    
+
     const onSubmit = data => {
         const review = {
             name: user.displayName,
@@ -21,7 +21,7 @@ const Review = () => {
             star: star,
             review: data.review
         }
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://still-taiga-80375.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

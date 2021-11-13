@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-const useProducts = ()=>{
+const useProducts = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://still-taiga-80375.herokuapp.com/products')
             .then(res => setProducts(res.data))
     }, [])
-    return[products, setProducts]
+    return [products, setProducts]
 }
 export default useProducts;

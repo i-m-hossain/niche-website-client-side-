@@ -12,7 +12,7 @@ const User = ({ userItem, handleDelete }) => {
             alert("you can't change your user role by yourself")
             return
         }
-        fetch('http://localhost:5000/users', {
+        fetch('https://still-taiga-80375.herokuapp.com/users', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,14 +27,14 @@ const User = ({ userItem, handleDelete }) => {
                 }
             })
     }
-    const handleDeleteUser = (email, id)=>{
-        if (user.email === email){
+    const handleDeleteUser = (email, id) => {
+        if (user.email === email) {
             alert("you can't delete yourself")
             return
         }
         handleDelete(id)
     }
-    
+
     return (
         <TableRow
             key={userItem._id}

@@ -14,15 +14,15 @@ const PlaceOrder = () => {
     const history = useHistory()
     const { productId } = useParams()
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${productId}`)
+        fetch(`https://still-taiga-80375.herokuapp.com/products/${productId}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [productId])
     console.log(product)
     const submitUserInfo = (info, reset) => {
-        
+
         const order = { ...info, product: product }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://still-taiga-80375.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ const PlaceOrder = () => {
                     <Container>
                         <Grid container spacing={2}>
                             {/* product description */}
-                            <Grid item xs={12} md={12} sx={{my:3}}>
+                            <Grid item xs={12} md={12} sx={{ my: 3 }}>
                                 <h3 >Product Details</h3>
                                 <PlaceOrderItem product={product}></PlaceOrderItem>
                             </Grid>

@@ -4,19 +4,19 @@ import { Button, MenuItem } from '@mui/material';
 import { Box } from '@mui/system';
 import Alert from '@mui/material/Alert';
 const MakeAdmin = () => {
-    
+
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
     const [role, setRole] = useState('user')
     const [user, setUser] = useState({})
     const handleOnBlur = (e) => {
-        const newUser = {...user}
+        const newUser = { ...user }
         newUser.email = e.target.value
         newUser.role = 'user'
         setUser(newUser)
     }
-    const handleOnChange =(e)=>{
-        const newUser ={...user}
+    const handleOnChange = (e) => {
+        const newUser = { ...user }
         newUser.role = e.target.value
         setRole(e.target.value)
         setUser(newUser)
@@ -28,7 +28,7 @@ const MakeAdmin = () => {
             alert('email is required')
             return;
         }
-        fetch(`http://localhost:5000/users/admin`, {
+        fetch(`https://still-taiga-80375.herokuapp.com/users/admin`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

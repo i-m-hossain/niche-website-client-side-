@@ -13,7 +13,7 @@ import axios from 'axios';
 const ManageUserRole = () => {
     const [users, setUsers] = React.useState([])
     React.useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://still-taiga-80375.herokuapp.com/users')
             .then(res => res.json())
             .then(data => {
                 setUsers(data)
@@ -22,31 +22,31 @@ const ManageUserRole = () => {
     const handleDelete = (id) => {
         const confirm = window.confirm('are you sure you want to delete the user?');
         if (confirm) {
-            axios.delete(`http://localhost:5000/users/${id}`)
+            axios.delete(`https://still-taiga-80375.herokuapp.com/users/${id}`)
                 .then(res => {
-                    if (res.data.deletedCount>0){
+                    if (res.data.deletedCount > 0) {
                         const restUser = users.filter(user => user._id !== id);
                         setUsers(restUser)
                     }
                 })
         }
     }
-        return (
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">Name</TableCell>
-                            <TableCell align="center">Email</TableCell>
-                            <TableCell align="center">Current Role</TableCell>
-                            <TableCell align="center">Change User role</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {users.map((user) => <User userItem={user} handleDelete={handleDelete}></User>)}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        );
-    }
-    export default ManageUserRole;
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="center">Name</TableCell>
+                        <TableCell align="center">Email</TableCell>
+                        <TableCell align="center">Current Role</TableCell>
+                        <TableCell align="center">Change User role</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {users.map((user) => <User userItem={user} handleDelete={handleDelete}></User>)}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+}
+export default ManageUserRole;

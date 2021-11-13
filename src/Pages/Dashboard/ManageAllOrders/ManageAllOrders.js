@@ -9,14 +9,14 @@ import MyOrderItem from '../MyOrder/MyOrderItem/MyOrderItem';
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/orders`)
+        fetch(`https://still-taiga-80375.herokuapp.com/orders`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
     const handleOnClick = (id) => {
         const confirm = window.confirm('Are you sure want to cancel the order?')
         if (confirm) {
-            axios.delete(`http://localhost:5000/orders/${id}`)
+            axios.delete(`https://still-taiga-80375.herokuapp.com/orders/${id}`)
                 .then(res => {
                     console.log(res.data)
                     if (res.data.deletedCount > 0) {

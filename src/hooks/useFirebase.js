@@ -33,7 +33,7 @@ const useFirebase = () => {
             .finally(() => { setIsLoading(false) });
     }
     const saveUser = (user) => {
-        axios.post(`http://localhost:5000/users`, user)
+        axios.post(`https://still-taiga-80375.herokuapp.com/users`, user)
             .then(res => console.log('from save user:', res))
     }
     // updating user profile when user successfully register
@@ -87,7 +87,7 @@ const useFirebase = () => {
     // check the authenticated user status
     useEffect(() => {
         console.log(user.email);
-        const url = `http://localhost:5000/users/role?email=${user?.email}`
+        const url = `https://still-taiga-80375.herokuapp.com/users/role?email=${user?.email}`
         axios.get(url)
             .then(res => {
                 console.log('res',res.data.role);

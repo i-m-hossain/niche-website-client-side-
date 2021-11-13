@@ -11,11 +11,11 @@ import ProductItem from './ProductItem';
 import useProducts from '../../../hooks/useProducts';
 
 const ManageProducts = () => {
-   const [products, setProducts] = useProducts([])
+    const [products, setProducts] = useProducts([])
     const handleDelete = (id) => {
         const confirm = window.confirm('are you sure you want to delete the user?');
         if (confirm) {
-            axios.delete(`http://localhost:5000/products/${id}`)
+            axios.delete(`https://still-taiga-80375.herokuapp.com/products/${id}`)
                 .then(res => {
                     if (res.data.deletedCount > 0) {
                         const restUser = products.filter(user => user._id !== id);
