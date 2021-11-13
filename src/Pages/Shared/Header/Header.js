@@ -19,7 +19,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Button, Divider, Drawer, List, ListItem, ListItemIcon } from '@mui/material';
 
 
-const Header = () => {
+const Header = (props) => {
     const { user, logout } = useAuth()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -27,6 +27,8 @@ const Header = () => {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const { window } = props;
+    const container = window !== undefined ? () => window().document.body : undefined;
     const handleLoginClick = () => {
         history.push('/login')
     }
@@ -122,8 +124,12 @@ const Header = () => {
 
     const drawerWidth = 200;
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+        <Box sx={{ flexGrow: 1, }}>
+            <AppBar position="fixed"
+                sx={{
+                    width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    ml: { sm: `${drawerWidth}px` },
+                }} sx={{ bgcolor: '#F0F1F5' }}>
                 <Toolbar>
                     <IconButton
                         size="small"
@@ -133,7 +139,7 @@ const Header = () => {
                         sx={{ mr: 2 }}
                         onClick={handleDrawerToggle}
                     >
-                        <MenuIcon></MenuIcon>
+                        <MenuIcon sx={{ color: 'black' }}></MenuIcon>
 
                     </IconButton>
                     <Typography
@@ -185,7 +191,7 @@ const Header = () => {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                <AccountCircle sx={{ color: 'black' }} />
                             </IconButton>
                         }
                     </Box>
@@ -198,7 +204,7 @@ const Header = () => {
                             onClick={handleMobileMenuOpen}
                             color="inherit"
                         >
-                            <MoreIcon />
+                            <MoreIcon sx={{ color: 'black' }} />
                         </IconButton>
                     </Box>
                 </Toolbar>
@@ -210,7 +216,7 @@ const Header = () => {
             >
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Drawer
-
+                    container={container}
                     variant="temporary"
                     anchor="left"
                     open={mobileOpen}
@@ -232,4 +238,6 @@ const Header = () => {
         </Box>
     );
 }
+
+
 export default Header;
