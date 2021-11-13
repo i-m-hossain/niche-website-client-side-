@@ -20,7 +20,7 @@ import { Button, Divider, Drawer, List, ListItem, ListItemIcon } from '@mui/mate
 
 
 const Header = (props) => {
-    const { user, logout } = useAuth()
+    const { role, user, logout } = useAuth()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const history = useHistory()
@@ -33,7 +33,12 @@ const Header = (props) => {
         history.push('/login')
     }
     const handleDashboard = () => {
-        history.push('/dashboard')
+
+        if (role === 'admin') {
+            history.push('/dashboard/manageAllOrders')
+        } else {
+            history.push('/dashboard/myOrders')
+        }
     }
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
