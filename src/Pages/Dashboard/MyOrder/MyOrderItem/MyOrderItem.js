@@ -15,7 +15,7 @@ const MyOrderItem = ({ order, product, index, handleOnClick }) => {
         console.log('i am clicked');
         const body = { status: status === 'pending' ? "shipped" : "pending" }
         console.log(body);
-        axios.put(`http://localhost:5000/orders/${id}`, body)
+        axios.put(`https://still-taiga-80375.herokuapp.com/orders/${id}`, body)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     setStatus(status === 'pending' ? "shipped" : "pending")
