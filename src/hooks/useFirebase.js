@@ -27,6 +27,7 @@ const useFirebase = () => {
                 const url = '/'
                 history.push(url)
                 console.log('from register: user is registered');
+                setAuthError('')
             })
             .catch((error) => {
                 setAuthError(error.message)
@@ -58,6 +59,7 @@ const useFirebase = () => {
                 setIsLoading(false)
                 const url = location?.state?.from || '/'
                 history.push(url)
+                setAuthError('')
             })
             .catch((error) => {
                 setAuthError(error.message)
