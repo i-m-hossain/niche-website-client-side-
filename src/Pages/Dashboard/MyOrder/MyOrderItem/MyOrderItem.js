@@ -1,8 +1,27 @@
 import { Button, TableBody, TableCell, TableRow } from '@mui/material';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import useAuth from '../../../../hooks/useAuth';
 
 const MyOrderItem = ({ order, product, index, handleOnClick }) => {
+    const { role } = useAuth()
+    const [status, setStatus] = useState(order.status)
     console.log(order);
+    const handleStatus = (id) => {
+        if (role !== 'admin') {
+            alert('you are not authorized to do this operation')
+            return;
+        }
+        console.log('i am clicked');
+        const body = { status: status === 'pending' ? "shipped" : "pending" }
+        console.log(body);
+        axios.put(`http://localhost:5000/orders/${id}`, body)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    setStatus(status === 'pending' ? "shipped" : "pending")
+                }
+            })
+    }
     return (
         <TableRow
             key=""
@@ -24,7 +43,13 @@ const MyOrderItem = ({ order, product, index, handleOnClick }) => {
                 ${product?.price}
             </TableCell>
             <TableCell align="center">
-                <Button variant="contained" sx={{ backgroundColor: 'red' }} onClick={() => handleOnClick(order._id)}>Cancel Order</Button>
+                <Button onClick={() => handleStatus(order._id)}>{status}</Button>
+            </TableCell>
+            <TableCell align="center">
+                <Button
+                    variant="contained"
+                    sx={{ backgroundColor: 'red' }}
+                    onClick={() => handleOnClick(order._id)}>Cancel Order</Button>
             </TableCell>
         </TableRow>
 

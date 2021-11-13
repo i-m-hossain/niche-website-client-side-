@@ -55,7 +55,7 @@ const useFirebase = () => {
             .then((result) => {
                 console.log('from sign in: user is logged in');
                 setIsLoading(false)
-                const url = location?.state?.from || '/dashboard'
+                const url = location?.state?.from || '/'
                 history.push(url)
             })
             .catch((error) => {
@@ -90,7 +90,7 @@ const useFirebase = () => {
         const url = `https://still-taiga-80375.herokuapp.com/users/role?email=${user?.email}`
         axios.get(url)
             .then(res => {
-                console.log('res',res.data.role);
+                console.log('res', res.data.role);
                 setRole(res.data.role)
             })
 

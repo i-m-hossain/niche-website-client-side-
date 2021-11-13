@@ -177,7 +177,7 @@ const Header = (props) => {
                                 onClick={handleLoginClick}
                             >
 
-                                <FiLogIn title="Login" />
+                                <FiLogIn title="Login" style={{ color: 'black' }} />
 
                             </IconButton>
                         }

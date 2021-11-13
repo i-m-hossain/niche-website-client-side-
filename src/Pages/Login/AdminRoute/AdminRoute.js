@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const AdminRoute = ({ children, ...rest }) => {
-    const { user,role, isLoading } = useAuth();
+    const { user, role, isLoading } = useAuth();
     if (isLoading) {
         return <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
             <CircularProgress />
@@ -15,7 +15,7 @@ const AdminRoute = ({ children, ...rest }) => {
         <Route
             {...rest}
             render={({ location }) =>
-                user.email && role=== 'admin' ? (
+                user.email && role === 'admin' ? (
                     children
                 ) : (
                     <Redirect

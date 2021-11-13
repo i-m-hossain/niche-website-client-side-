@@ -44,6 +44,7 @@ const ManageAllOrders = () => {
                                                 <TableCell align="center">Orderer</TableCell>
                                                 <TableCell align="center">Product Image</TableCell>
                                                 <TableCell align="center">Product Price</TableCell>
+                                                <TableCell align="center">Status</TableCell>
                                                 <TableCell align="center">Action</TableCell>
                                             </TableRow>
                                         </TableHead>

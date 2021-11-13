@@ -21,7 +21,7 @@ const PlaceOrder = () => {
     console.log(product)
     const submitUserInfo = (info, reset) => {
 
-        const order = { ...info, product: product }
+        const order = { ...info, product: product, status: 'pending' }
         fetch('https://still-taiga-80375.herokuapp.com/orders', {
             method: 'POST',
             headers: {
