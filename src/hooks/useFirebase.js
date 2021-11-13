@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, getIdToken } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Pages/Login/Firebase/firebase.init";
 import axios from 'axios'
@@ -10,6 +10,7 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [authError, setAuthError] = useState('')
     const [role, setRole] = useState('user')
+    const [token, setToken] = useState('')
 
     // registering user with email and password
     const registerWithEmail = (email, password, name, history, location) => {
@@ -67,6 +68,11 @@ const useFirebase = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                // get jwt token
+                getIdToken(user)
+                    .then(idToken => {
+                        setToken(idToken)
+                    })
             } else {
                 setUser({})
             }
@@ -101,6 +107,7 @@ const useFirebase = () => {
         isLoading,
         user,
         authError,
+        token,
         registerWithEmail,
         signInWithEmail,
         logout

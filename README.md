@@ -15,6 +15,7 @@
     11. A user can review with star rating 
     12. Home page shows dynamic product, user reviews, a contact form and a banner.
     13. website is mobile responsive
+    14. environment variables are used
 
 #### used packages
     1. Material ui

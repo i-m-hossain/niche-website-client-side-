@@ -8,12 +8,18 @@ import MyOrderItem from './MyOrderItem/MyOrderItem';
 
 const MyOrder = () => {
     const [orders, setOrders] = useState([])
-    const { user } = useAuth()
+    const { user, token } = useAuth()
+    console.log(token);
     useEffect(() => {
-        fetch(`https://still-taiga-80375.herokuapp.com/orders?email=${user.email}`)
+        fetch(`https://still-taiga-80375.herokuapp.com/orders?email=${user.email}`, {
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
+        })
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
+    // deleteing or cancelling order
     const handleOnClick = (id) => {
         const confirm = window.confirm('Are you sure want to cancel the order?')
         if (confirm) {

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 
 const User = ({ userItem, handleDelete }) => {
-    const { user } = useAuth()
+    const { user, token } = useAuth()
     const [userRole, setUserRole] = useState(userItem.role)
 
     const handleUserRole = (person) => {
@@ -12,9 +12,11 @@ const User = ({ userItem, handleDelete }) => {
             alert("you can't change your user role by yourself")
             return
         }
+        // https://still-taiga-80375.herokuapp.com
         fetch('https://still-taiga-80375.herokuapp.com/users', {
             method: 'PUT',
             headers: {
+                'authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(person)

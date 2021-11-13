@@ -3,8 +3,9 @@ import TextField from '@mui/material/TextField';
 import { Button, MenuItem } from '@mui/material';
 import { Box } from '@mui/system';
 import Alert from '@mui/material/Alert';
+import useAuth from '../../../hooks/useAuth';
 const MakeAdmin = () => {
-
+    const { token } = useAuth()
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
     const [role, setRole] = useState('user')
@@ -31,6 +32,7 @@ const MakeAdmin = () => {
         fetch(`https://still-taiga-80375.herokuapp.com/users/admin`, {
             method: 'PUT',
             headers: {
+                'authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
