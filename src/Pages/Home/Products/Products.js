@@ -5,7 +5,7 @@ import useProducts from '../../../hooks/useProducts';
 const Products = () => {
     const [products, setProducts] = useProducts([])
     return (
-        <Container sx={{ mt: 8, pt: 2 }}>
+        <Container>
             <h2>Our Products</h2>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, md: 12 }}>
                 {products.slice(0, 6).map((product, index) => (

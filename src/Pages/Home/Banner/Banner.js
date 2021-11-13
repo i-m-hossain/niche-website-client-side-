@@ -1,35 +1,39 @@
-// import React, { useEffect, useState } from 'react';
-// import Swiper from "swiper";
-// import "swiper/css/swiper.css";
+import { Button, Grid, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import bgImage from '../../../Images/bg.jpg'
+const bg = {
+    backgroundImage: `url(${bgImage})`,
+    backgroundPosition: "center",
+    backgroundBlendMode: 'darken, luminosity',
+    backgroundColor: 'rgba(45, 58, 74, .9)',
+}
 
-// const Banner = () => {
-//     let [mySwiper, setMySwiper] = useState(null)
-//     useEffect(() => {
-//         var swiper = new Swiper('.swiper-container', {
-//             direction: 'vertical',
-//             pagination: {
-//                 el: '.swiper-pagination',
-//                 clickable: true,
-//             },
-//         });
-//     }, [])
-//     return (
-//         <div class="swiper-container">
-//             <div class="swiper-wrapper">
-//                 <div class="swiper-slide">Slide 1</div>
-//                 <div class="swiper-slide">Slide 2</div>
-//                 <div class="swiper-slide">Slide 3</div>
-//                 <div class="swiper-slide">Slide 4</div>
-//                 <div class="swiper-slide">Slide 5</div>
-//                 <div class="swiper-slide">Slide 6</div>
-//                 <div class="swiper-slide">Slide 7</div>
-//                 <div class="swiper-slide">Slide 8</div>
-//                 <div class="swiper-slide">Slide 9</div>
-//                 <div class="swiper-slide">Slide 10</div>
-//             </div>
-//             <div class="swiper-pagination"></div>
-//         </div>
-//     );
-// };
+const Banner = () => {
 
-// export default Banner;
+    return (
+        <Box >
+            <Grid container style={bg} >
+                <Grid item xs={12} md={6} style={bg}>
+                    <img src="https://i.ibb.co/tstQ9c7/11.jpg" alt="" width="100%" style={{ objectFit: "contain" }} />
+                </Grid>
+                <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: "#fff" }}>
+                    <Typography variant="h2" gutterBottom component="div">
+                        New collection
+                    </Typography>
+                    <Typography variant="h4">
+                        Grab yours today!
+                    </Typography>
+                    <Button variant="contained" sx={{ mt: 2, bgcolor: '#F1D9D8', }} >
+                        <Link to="/explore">Shop now</Link>
+                    </Button>
+                </Grid>
+
+
+            </Grid>
+        </Box >
+    );
+};
+
+export default Banner;

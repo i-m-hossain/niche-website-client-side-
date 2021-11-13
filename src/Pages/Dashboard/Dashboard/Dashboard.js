@@ -162,8 +162,9 @@ const Dashboard = (props) => {
             >
                 <Toolbar />
                 <Box>
-                    
+
                     <Switch>
+
                         <UserRoute path={`${path}/pay`}>
                             <Pay></Pay>
                         </UserRoute>

@@ -29,7 +29,7 @@ const Product = ({ product }) => {
                 </CardContent>
 
 
-                <Button size="small" variant="contained" onClick={() => handleOnClick(product._id)}>Buy now</Button>
+                <Button sx={{ bgcolor: '#F1D9D8', color: "#000" }} size="small" variant="contained" onClick={() => handleOnClick(product._id)}>Buy now</Button>
 
             </Card>
 
