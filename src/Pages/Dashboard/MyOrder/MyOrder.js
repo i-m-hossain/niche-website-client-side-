@@ -42,6 +42,7 @@ const MyOrder = () => {
                                             <TableRow>
                                                 <TableCell>#</TableCell>
                                                 <TableCell align="center">Product name</TableCell>
+                                                
                                                 <TableCell align="center">Product Image</TableCell>
                                                 <TableCell align="center">Product Price</TableCell>
                                                 <TableCell align="center">Action</TableCell>
