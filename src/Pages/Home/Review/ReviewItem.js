@@ -3,7 +3,7 @@ import React from 'react';
 
 const ReviewItem = ({ review }) => {
     return (
-        <Grid item xs={4} md={3} key={review._id}>
+        <Grid item xs={6} md={3} key={review._id}>
             <Card sx={{ p: 4 }} >
 
                 <CardContent>

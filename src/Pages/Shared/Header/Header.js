@@ -16,6 +16,7 @@ import { FiLogIn } from 'react-icons/fi'
 import useAuth from '../../../hooks/useAuth';
 import { useHistory } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
+import { Button, Divider, Drawer, List, ListItem, ListItemIcon } from '@mui/material';
 
 
 const Header = () => {
@@ -25,10 +26,11 @@ const Header = () => {
     const history = useHistory()
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const [mobileOpen, setMobileOpen] = React.useState(false);
     const handleLoginClick = () => {
         history.push('/login')
     }
-    const handleDashboard =()=>{
+    const handleDashboard = () => {
         history.push('/dashboard')
     }
     const handleProfileMenuOpen = (event) => {
@@ -47,8 +49,25 @@ const Header = () => {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
 
+    // drawer
+    const drawer = (
+        <div>
+            <Toolbar />
+            <Divider />
+            <List>
+                <ListItem button >
+                    <Link to='/explore'>Explore</Link>
+                </ListItem>
+            </List>
+            <Divider />
 
+        </div>
+    )
+    // menu right
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -93,52 +112,29 @@ const Header = () => {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
+                <Link to="/dashboard">Dashboard</Link>
             </MenuItem>
             <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
+                <Button onClick={logout}> Logout</Button>
             </MenuItem>
         </Menu>
     );
 
+    const drawerWidth = 200;
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
-                        size="large"
+                        size="small"
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
                         sx={{ mr: 2 }}
+                        onClick={handleDrawerToggle}
                     >
-                        <MenuIcon />
+                        <MenuIcon></MenuIcon>
+
                     </IconButton>
                     <Typography
                         variant="h6"
@@ -146,9 +142,11 @@ const Header = () => {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
-                       <Link to="/"> Nokshi</Link>
+                        <Link to="/">
+                            <img src="https://i.ibb.co/bHMkQ8x/2.png" />
+                        </Link>
                     </Typography>
-                    
+
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
@@ -205,6 +203,30 @@ const Header = () => {
                     </Box>
                 </Toolbar>
             </AppBar>
+            <Box
+                component="nav"
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                aria-label="mailbox folders"
+            >
+                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                <Drawer
+
+                    variant="temporary"
+                    anchor="left"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
+                    sx={{
+                        display: { xs: 'block', sm: 'none' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+
+            </Box>
             {renderMobileMenu}
             {renderMenu}
         </Box>
