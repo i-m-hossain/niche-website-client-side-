@@ -9,7 +9,7 @@ const Explore = () => {
     return (
         <>
             <Header></Header>
-            <Container>
+            <Container sx={{ m: 8, p: 4 }}>
                 <h2>Our Products</h2>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, md: 12 }}>
                     {products.map((product, index) => (

@@ -9,7 +9,7 @@ const MyOrderItem = ({ order, product, index, handleOnClick }) => {
     console.log(order);
     const handleStatus = (id) => {
         if (role !== 'admin') {
-            alert('you are not authorized to do this operation')
+            alert('You must be an admin to change the order status')
             return;
         }
         console.log('i am clicked');
@@ -47,6 +47,7 @@ const MyOrderItem = ({ order, product, index, handleOnClick }) => {
             </TableCell>
             <TableCell align="center">
                 <Button
+
                     variant="contained"
                     sx={{ backgroundColor: 'red' }}
                     onClick={() => handleOnClick(order._id)}>Cancel Order</Button>
