@@ -5,8 +5,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const UserRoute = ({ children, ...rest }) => {
-    const { user, role, isLoading } = useAuth();
-    if (isLoading) {
+    const { user, role } = useAuth();
+    if (role !== 'user') {
         return <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
             <CircularProgress />
         </Box>

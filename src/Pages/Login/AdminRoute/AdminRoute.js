@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user, role, isLoading } = useAuth();
-    if (isLoading) {
+    if (role !== 'admin') {
         return <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
             <CircularProgress />
         </Box>

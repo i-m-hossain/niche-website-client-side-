@@ -24,9 +24,8 @@ const useFirebase = () => {
                 saveUser(newUser)
                 //updating user profiles name
                 updateUserProfile(name)
-                const url = '/'
+                const url = '/dashboard'
                 history.push(url)
-                console.log('from register: user is registered');
                 setAuthError('')
             })
             .catch((error) => {
@@ -55,9 +54,8 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                console.log('from sign in: user is logged in');
                 setIsLoading(false)
-                const url = location?.state?.from || '/'
+                const url = location?.state?.from || '/dashboard'
                 history.push(url)
                 setAuthError('')
             })

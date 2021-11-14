@@ -12,6 +12,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 import {
+    Route,
     Switch,
     useRouteMatch
 } from "react-router-dom"
@@ -27,6 +28,7 @@ import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import UserRoute from '../../Login/UserRoute/UserRoute';
 import ManageUserRole from '../ManageUserRole/ManageUserRole';
 import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
+import DashboardHome from './DashboardHome';
 
 const drawerWidth = 240;
 
@@ -160,7 +162,9 @@ const Dashboard = (props) => {
                 <Box>
 
                     <Switch>
-
+                        <Route exact path={path}>
+                            <DashboardHome></DashboardHome>
+                        </Route>
                         <UserRoute path={`${path}/pay`}>
                             <Pay></Pay>
                         </UserRoute>
