@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 const AdminRoute = ({ children, ...rest }) => {
-    const { user, role, isLoading } = useAuth();
+    const { user, role } = useAuth();
     if (role !== 'admin') {
         return <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
             <CircularProgress />

@@ -30,12 +30,7 @@ const Header = (props) => {
         history.push('/login')
     }
     const handleDashboard = () => {
-
-        if (role === 'admin') {
-            history.push('/dashboard/manageAllOrders')
-        } else {
-            history.push('/dashboard/myOrders')
-        }
+        history.push('/dashboard')
     }
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
