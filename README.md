@@ -16,6 +16,7 @@
     12. Home page shows dynamic product, user reviews, a contact form and a banner.
     13. website is mobile responsive
     14. environment variables are used
+    15. jwt authentication added
 
 #### used packages
     1. Material ui

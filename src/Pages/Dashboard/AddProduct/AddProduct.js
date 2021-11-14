@@ -7,7 +7,9 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 const AddProduct = () => {
     const [success, setSuccess] = useState(false)
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
     const onSubmit = data => {
+        console.log(data);
         const service = { name: data.name, image: data.image, description: data.shortDescription, price: data.price }
         console.log(service);
         fetch('https://still-taiga-80375.herokuapp.com/products', {
@@ -58,9 +60,10 @@ const AddProduct = () => {
                     />
                     {
                         errors && <p style={{ color: "red" }}>
-                            {errors.image?.type === 'required' && "**Image is required"}
+                            {errors.image?.type === 'required' && "**Image url is required"}
                         </p>
                     }
+
                     <TextField
                         id="standard-basic-2"
                         label="Product price"
